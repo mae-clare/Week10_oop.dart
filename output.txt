@@ -1,0 +1,31 @@
+===== WEEK 10: ENHANCED OOP APPLICATION =====
+
+--- Flat Paintbrush ---
+Tool: Flat Paintbrush
+Color: Blue
+Size: 2.5
+Clean: true
+Flat Paintbrush spreads Blue paint over a wide surface.
+Clean after use: false
+The tool has been cleaned.
+
+--- Round Paintbrush ---
+Tool: Round Paintbrush
+Color: Red
+Size: 1
+Clean: true
+Round Paintbrush creates detailed lines and circular strokes using Red paint.
+Clean after use: false
+The tool has been cleaned.
+
+--- Polymorphism Demonstration ---
+Flat Paintbrush spreads Blue paint over a wide surface.
+Round Paintbrush creates detailed lines and circular strokes using Red paint.
+
+--- Paint Palette ---
+Palette: My Art Palette
+Palette clean before cleaning: false
+The tool has been cleaned.
+Palette clean after cleaning: true
+
+===== PROGRAM FINISHED =====
