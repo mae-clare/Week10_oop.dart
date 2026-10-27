@@ -1,0 +1,104 @@
+
+abstract class PaintTool {
+  String name;
+
+  PaintTool(this.name);
+  void applyPaint();
+}
+
+mixin Cleanable {
+  bool isClean = true;
+
+  void cleanTool() {
+    isClean = true;
+    print("The tool has been cleaned.");
+  }
+
+  void makeDirty() {
+    isClean = false;
+  }
+}
+
+abstract class Paintbrush extends PaintTool with Cleanable {
+  String color;
+  double size;
+
+  Paintbrush(String name, this.color, this.size) : super(name);
+
+  void displayInfo() {
+    print("Tool: $name");
+    print("Color: $color");
+    print("Size: $size");
+    print("Clean: $isClean");
+  }
+}
+
+class FlatPaintbrush extends Paintbrush {
+  FlatPaintbrush(String color, double size)
+      : super("Flat Paintbrush", color, size);
+
+  @override
+  void applyPaint() {
+    makeDirty();
+    print("$name spreads $color paint over a wide surface.");
+  }
+}
+
+class RoundPaintbrush extends Paintbrush {
+  RoundPaintbrush(String color, double size)
+      : super("Round Paintbrush", color, size);
+
+  @override
+  void applyPaint() {
+    makeDirty();
+    print("$name creates detailed lines and circular strokes using $color paint.");
+  }
+}
+
+class PaintPalette with Cleanable {
+  String paletteName;
+
+  PaintPalette(this.paletteName);
+
+  void displayPalette() {
+    print("Palette: $paletteName");
+  }
+}
+
+void main() {
+  print("===== WEEK 10: ENHANCED OOP APPLICATION =====\n");
+
+  // Create objects from the derived classes.
+  Paintbrush flatBrush = FlatPaintbrush("Blue", 2.5);
+  Paintbrush roundBrush = RoundPaintbrush("Red", 1.0);
+
+  // Display information.
+  print("--- Flat Paintbrush ---");
+  flatBrush.displayInfo();
+  flatBrush.applyPaint();
+  print("Clean after use: ${flatBrush.isClean}");
+  flatBrush.cleanTool();
+
+  print("\n--- Round Paintbrush ---");
+  roundBrush.displayInfo();
+  roundBrush.applyPaint();
+  print("Clean after use: ${roundBrush.isClean}");
+  roundBrush.cleanTool();
+
+  print("\n--- Polymorphism Demonstration ---");
+  List<Paintbrush> brushes = [flatBrush, roundBrush];
+
+  for (Paintbrush brush in brushes) {
+    brush.applyPaint();
+  }
+
+  print("\n--- Paint Palette ---");
+  PaintPalette palette = PaintPalette("My Art Palette");
+  palette.displayPalette();
+  palette.makeDirty();
+  print("Palette clean before cleaning: ${palette.isClean}");
+  palette.cleanTool();
+  print("Palette clean after cleaning: ${palette.isClean}");
+
+  print("\n===== PROGRAM FINISHED =====");
+}
